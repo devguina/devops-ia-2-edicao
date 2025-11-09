@@ -1,3 +1,12 @@
+linha do tempo
+vai de codigo a produção
+
+a pipe line pega todo esse ciclo
+dividida pela ci e pela cd
+
+cd:
+artefato ci -> deploy staging -> testes -> aprovacao Manual -> Deployment Producao -> aplicacao no ar
+
 name: CI-CD
 on:
   push:
@@ -27,6 +36,13 @@ jobs:
           with:
             username: ${{ vars.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
+        - name: Build and push
+          uses: docker/build-push-action@v6
+          with:
+            push: true
+            tags: devguina/bootcamp-encontros-tech:v${{ github.run_number}
+            file: ./02-encontros-tech/Dockerfile
+            context: ./02-encontros-tech
   CD:
       runs-on: ubuntu-latest
       needs: [CI]
