@@ -1,12 +1,3 @@
-linha do tempo
-vai de codigo a produção
-
-a pipe line pega todo esse ciclo
-dividida pela ci e pela cd
-
-cd:
-artefato ci -> deploy staging -> testes -> aprovacao Manual -> Deployment Producao -> aplicacao no ar
-
 name: CI-CD
 on:
   push:
