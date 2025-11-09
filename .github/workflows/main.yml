@@ -22,6 +22,12 @@ jobs:
           run: python -m pytest tests/ -v
         - run: echo "executar o Docker Build"
         - run: echo "enviar a imagem docker para o docker hub"
+        -
+        - name: Login to Docker Hub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ vars.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
   CD:
       runs-on: ubuntu-latest
       needs: [CI]
